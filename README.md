@@ -36,11 +36,7 @@ This project is a starting point for a Flutter application.
 
 To get a local copy up and running follow these simple steps
 
-- clone the repository
 
-    https://github.com/nishitdixit/rolling_Dice.git
-  
-- Running your Flutter app
 
 Use the **flutter run**  command to run your Flutter app on a connected device or simulator.
 
