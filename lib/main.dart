@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rolling_Dice/homescreen.dart';
-import 'package:rolling_Dice/splash.dart';
-
+import 'homescreen.dart';
 
 void main() {
   runApp(
@@ -16,6 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(primarySwatch: Colors.amber),
       home: HomeScreen(),
     );
   }

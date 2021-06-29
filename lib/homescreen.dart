@@ -25,79 +25,81 @@ class _HomeScreenState extends State<HomeScreen>
     _controller.dispose();
   }
 
-  animate(){
-     _controller =
+  animate() {
+    _controller =
         AnimationController(duration: Duration(seconds: 1), vsync: this);
-        animation= CurvedAnimation(parent: _controller,curve: Curves.bounceOut);
+    animation = CurvedAnimation(parent: _controller, curve: Curves.bounceOut);
     animation.addListener(() {
-      setState(() {
-        
-      });
+      setState(() {});
       // print(_controller.value);
     });
-   animation.addStatusListener((status) {
+    animation.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         setState(() {
-      leftDiceNumber = Random().nextInt(6) + 1;
-      rightDiceNumber = Random().nextInt(6) + 1;
-    });
+          leftDiceNumber = Random().nextInt(6) + 1;
+          rightDiceNumber = Random().nextInt(6) + 1;
+        });
         // print('Completed');
-       _controller.reverse();
+        _controller.reverse();
       }
     });
   }
 
   void roll() {
     _controller.forward();
-    
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Dicee'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  child: GestureDetector(
-                    onDoubleTap: roll,
-                    child: Padding(
-                      padding: EdgeInsets.all(15),
-                      child: Image(height:200- (animation.value)*200,
-                        image: AssetImage(
-                            'assets/images/dice-png-$leftDiceNumber.png'),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Roll The Dice'),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: GestureDetector(
+                      onDoubleTap: roll,
+                      child: Padding(
+                        padding: EdgeInsets.all(15),
+                        child: Image(
+                          height: 200 - (animation.value) * 200,
+                          image: AssetImage(
+                              'assets/images/dice-png-$leftDiceNumber.png'),
+                        ),
                       ),
                     ),
                   ),
-                ),
-                Expanded(
-                  child: GestureDetector(
-                    onDoubleTap: roll,
-                    child: Padding(
-                      padding: EdgeInsets.all(15),
-                      child: Image(height:200- (animation.value)*200,
-                        image: AssetImage(
-                            'assets/images/dice-png-$rightDiceNumber.png'),
+                  Expanded(
+                    child: GestureDetector(
+                      onDoubleTap: roll,
+                      child: Padding(
+                        padding: EdgeInsets.all(15),
+                        child: Image(
+                          height: 200 - (animation.value) * 200,
+                          image: AssetImage(
+                              'assets/images/dice-png-$rightDiceNumber.png'),
+                        ),
                       ),
                     ),
-                  ),
-                )
-              ],
-            ),
-            RaisedButton(
-              onPressed: roll,
-              child: Text(
-                'Roll',
-                style: TextStyle(fontWeight: FontWeight.bold),
+                  )
+                ],
               ),
-            )
-          ],
+              RaisedButton(
+                onPressed: roll,
+                child: Text(
+                  'Roll',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                color: Colors.amber,
+              )
+            ],
+          ),
         ),
       ),
     );
